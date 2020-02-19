@@ -23,7 +23,7 @@ def longest_subarray_less_k(k:int, pizzas: list):
 			continue
 
 		else:
-			window.append(new_pizza)
+			window.append(i)
 			cur_sum += new_pizza
 			best = max(best, len(window))
 
