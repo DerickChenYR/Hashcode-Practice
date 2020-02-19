@@ -1,7 +1,7 @@
 ##!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-
+import itertools
 
 def longest_subarray_less_k(k:int, pizzas: list):
 
@@ -13,19 +13,21 @@ def longest_subarray_less_k(k:int, pizzas: list):
 	length = len(pizzas)
 
 	#Parse the small-sliced pizzas first, then bigger ones
-	for i in range(length):
-
-		new_pizza = pizzas[i]
-		
-
-		#Current sum exceeds target value, going further down the list would result in a less optimal output
-		if cur_sum + new_pizza > k:
-			continue
-
-		else:
-			window.append(i)
-			cur_sum += new_pizza
-			best = max(best, len(window))
+	indices = [x for x in range(len(pizzas))]
+	cur_max = 0
+	best_order = []
+	for i in range(1,len(indices)+1):
+		iterations = list(itertools.combinations(indices,i))
+		for iteration in iterations:
+			cur_slices = 0
+			for index in iteration:
+				cur_slices += pizzas[index]
+			if cur_slices>k:
+				continue
+			elif cur_slices>cur_max:
+				cur_max = cur_slices
+				best_order = iteration
+	return len(best_order),best_order
 
 
 	#returns number of items in the window, and actual list of window
