@@ -28,8 +28,8 @@ def longest_subarray_less_k(k:int, pizzas: list):
 			best = max(best, len(window))
 
 
-
-	return best
+	#returns number of items in the window, and actual list of window
+	return best, window
 
 
 
