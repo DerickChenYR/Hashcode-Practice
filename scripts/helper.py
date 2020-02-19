@@ -13,16 +13,15 @@ def parse_input(filename):
 
 
 #Write output for the project
-def write_output(number_of_pizzas: int, pizza_types: list):
+def write_output(number_of_pizzas: int, pizza_types: list, filename: str):
 
 	OUTPUT_DIR = "../output/"
 
-	with open(OUTPUT_DIR + "output.txt", "w") as file:
+	with open(OUTPUT_DIR + filename, "w") as file:
 
 		file.write(str(number_of_pizzas) + "\n")
 		for p in pizza_types:
 			file.write(str(p) + " ")
 
 	return True
-
 
